@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PhysicsHand : MonoBehaviour
 {
+
+    public float fastest_hand = 10.0f; // TODO: balance this value
+
     public Transform trackedTransform = null;
     public Rigidbody rb = null;
     public IObserver audioManager = null;
@@ -36,7 +39,8 @@ public class PhysicsHand : MonoBehaviour
 
         if (collision.gameObject.CompareTag("drum"))
         {
-            audioManager.OnDrumHit(rb.linearVelocity);
+            Vector3 contactPoint = collision.contacts[0].point;
+            audioManager.OnDrumHit(rb.linearVelocity/10, contactPoint);
             Debug.Log("Collided with drum");
         }
     }

@@ -4,6 +4,7 @@ public class AudioManager : MonoBehaviour, IObserver
 {
     public AudioClip drumSound;
     public AudioSource AudioSource;
+    public float loudestDrumSound = 10.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,9 +17,9 @@ public class AudioManager : MonoBehaviour, IObserver
         
     }
 
-    public void OnDrumHit(Vector3 velocity)
+    public void OnDrumHit(Vector3 velocity, Vector3 contactPoint)
     {
-        AudioSource.PlayOneShot(drumSound, velocity.normalized.magnitude);
+        AudioSource.PlayOneShot(drumSound, (velocity/loudestDrumSound).magnitude);
         Debug.Log("played sound");
     }
 }

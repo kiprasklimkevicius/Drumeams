@@ -18,8 +18,8 @@ public class DrumColliders : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Hand") {
-            AudioManager.OnDrumHit(Vector3.down);
-         }
+        // if (collision.gameObject.tag == "Hand") {
+        //     AudioManager.OnDrumHit(Vector3.down);
+        //  }
     }
 }
