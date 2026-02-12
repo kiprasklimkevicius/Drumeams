@@ -6,6 +6,12 @@ public class ParticleSystemManager : MonoBehaviour, IObserver
     public GameObject drumParticles;
     public Gradient gradient;
     public VisualEffect drumVFX = null;
+    public ParticleSystem blowParticles;
+    public ParticleSystem ps;
+    public bool blowPlaying = false;
+    float maxBlowVelocity = 5.0f;
+
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +34,23 @@ public class ParticleSystemManager : MonoBehaviour, IObserver
 
         Instantiate(drumParticles, contactPoint, drumParticles.transform.rotation);
         //TODO: Start coroutine to destroy particle (cause this is vfx need to do en manual)
+    }
+
+    public void OnBlowDetect(float blowForce)
+    {
+        if (!blowPlaying)
+        {
+            blowParticles.Play();
+            blowPlaying = true;
+        }
+        var emission = blowParticles.emission;
+        emission.rateOverTime = blowForce/2;
+        
+    }
+    public void OnBlowFinished()
+    {
+        blowParticles.Stop();
+        blowPlaying = false;
     }
 
     void SetGradientAlphas(Vector3 velocity)

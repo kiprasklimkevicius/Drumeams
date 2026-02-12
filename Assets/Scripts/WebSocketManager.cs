@@ -9,11 +9,18 @@ public class WebSocketManager : MonoBehaviour
     public string serverIP = "XXX.XXX.XXX.XXX"; // Replace with your server's IP address
     public int serverPort = 8081; // Replace with your server's port number (8081 is the default)
 
+    IObserver audioManager = null;
+    IObserver particleManager = null;
+
+
     [Range(0, 255)]
     public int ledIntensity = 0;
 
     async void Start()
     {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        particleManager = GameObject.Find("ParticleSystemManager").GetComponent<ParticleSystemManager>();
+
         websocket = new WebSocket("ws://" + serverIP + ":" + serverPort);
 
         //Runs when connected to the server
@@ -53,18 +60,19 @@ public class WebSocketManager : MonoBehaviour
     {
         string valueParsed = msg.Substring(msg.IndexOf(":") + 1);
 
-        if(msg.Contains("button")) {
-            if(valueParsed == "1") 
+        if(msg.Contains("fan")) {
+            int blowForce = int.Parse(valueParsed);
+            Debug.Log("fan, value: " + blowForce);
+            if(blowForce >= 1) 
             {
-                //do something if button pressed
-                Debug.Log("ESP32 Button Pressed");
+                audioManager.OnBlowDetect(blowForce);
+                particleManager.OnBlowDetect(blowForce);
             }
-            if(valueParsed == "0") 
+            if(blowForce == 0)
             {
-                //do something if button released
-                Debug.Log("ESP32 Button Released");
+                audioManager.OnBlowFinished();
+                particleManager.OnBlowFinished();
             }
-
         }
 
     }
