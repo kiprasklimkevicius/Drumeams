@@ -34,7 +34,7 @@ public class ParticleSystemManager : MonoBehaviour, IObserver
     {
         // Blend alpha from opaque at 0% to transparent at 100%
         var alphas = new GradientAlphaKey[2];
-        alphas[0] = new GradientAlphaKey(velocity.magnitude/10, 0.0f);
+        alphas[0] = new GradientAlphaKey(velocity.magnitude, 0.0f);
         alphas[1] = new GradientAlphaKey(0.0f, 1.0f);
         gradient.SetAlphaKeys(alphas);
     }

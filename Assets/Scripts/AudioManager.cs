@@ -19,7 +19,8 @@ public class AudioManager : MonoBehaviour, IObserver
 
     public void OnDrumHit(Vector3 velocity, Vector3 contactPoint)
     {
-        AudioSource.PlayOneShot(drumSound, (velocity/loudestDrumSound).magnitude);
+        AudioSource.PlayOneShot(drumSound, velocity.magnitude);
+        Debug.Log("Velocity magnitude: " + velocity.magnitude);
         Debug.Log("played sound");
     }
 }

@@ -1,3 +1,4 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class PhysicsHand : MonoBehaviour
@@ -8,15 +9,16 @@ public class PhysicsHand : MonoBehaviour
     public Transform trackedTransform = null;
     public Rigidbody rb = null;
     public IObserver audioManager = null;
+    public IObserver particleManager = null;
 
     public float positionStrength = 15.0f;
 
-    // private void FixedUpdate()
-    // {
-    //     var vel = (trackedTransform.position - rb.position).normalized
-    //         * positionStrength * Vector3.Distance(trackedTransform.position, rb.position);
-    //     rb.linearVelocity = vel;
-    // }
+    private void FixedUpdate()
+    {
+        var vel = (trackedTransform.position - rb.position).normalized
+            * positionStrength * Vector3.Distance(trackedTransform.position, rb.position);
+        rb.linearVelocity = vel;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +26,7 @@ public class PhysicsHand : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         trackedTransform = transform;
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
+        particleManager = GameObject.Find("ParticleSystemManager").GetComponent<ParticleSystemManager>();
         Debug.Log(audioManager);
     }
 
@@ -40,7 +43,10 @@ public class PhysicsHand : MonoBehaviour
         if (collision.gameObject.CompareTag("drum"))
         {
             Vector3 contactPoint = collision.contacts[0].point;
-            audioManager.OnDrumHit(rb.linearVelocity/10, contactPoint);
+            audioManager.OnDrumHit(rb.linearVelocity.normalized, contactPoint);
+            particleManager.OnDrumHit(rb.linearVelocity.normalized, contactPoint);
+
+
             Debug.Log("Collided with drum");
         }
     }
