@@ -11,12 +11,12 @@ public class PhysicsHand : MonoBehaviour
 
     public float positionStrength = 15.0f;
 
-    private void FixedUpdate()
-    {
-        var vel = (trackedTransform.position - rb.position).normalized
-            * positionStrength * Vector3.Distance(trackedTransform.position, rb.position);
-        rb.linearVelocity = vel;
-    }
+    // private void FixedUpdate()
+    // {
+    //     var vel = (trackedTransform.position - rb.position).normalized
+    //         * positionStrength * Vector3.Distance(trackedTransform.position, rb.position);
+    //     rb.linearVelocity = vel;
+    // }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

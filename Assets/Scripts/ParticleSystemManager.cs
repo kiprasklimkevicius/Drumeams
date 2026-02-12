@@ -27,6 +27,7 @@ public class ParticleSystemManager : MonoBehaviour, IObserver
         drumVFX.SetGradient("ColorOverLifeAlpha", gradient); //TODO: Testing
 
         Instantiate(drumParticles, contactPoint, drumParticles.transform.rotation);
+        //TODO: Start coroutine to destroy particle (cause this is vfx need to do en manual)
     }
 
     void SetGradientAlphas(Vector3 velocity)
