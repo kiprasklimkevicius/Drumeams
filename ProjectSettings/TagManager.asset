@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - drum
+  - floor
   layers:
   - Default
   - TransparentFX

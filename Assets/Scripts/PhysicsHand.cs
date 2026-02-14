@@ -11,6 +11,8 @@ public class PhysicsHand : MonoBehaviour
     public IObserver audioManager = null;
     public IObserver particleManager = null;
 
+    public WebSocketManager webSockets = null;
+
     public float positionStrength = 15.0f;
 
     private void FixedUpdate()
@@ -28,6 +30,7 @@ public class PhysicsHand : MonoBehaviour
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
         particleManager = GameObject.Find("ParticleSystemManager").GetComponent<ParticleSystemManager>();
         Debug.Log(audioManager);
+        webSockets = GameObject.Find("WebSocketManager").GetComponent<WebSocketManager>();
     }
 
     // Update is called once per frame
@@ -45,7 +48,7 @@ public class PhysicsHand : MonoBehaviour
             Vector3 contactPoint = collision.contacts[0].point;
             audioManager.OnDrumHit(rb.linearVelocity.normalized, contactPoint);
             particleManager.OnDrumHit(rb.linearVelocity.normalized, contactPoint);
-
+            webSockets.DrumHit(255);
 
             Debug.Log("Collided with drum");
         }

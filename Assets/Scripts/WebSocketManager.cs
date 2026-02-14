@@ -90,4 +90,18 @@ public class WebSocketManager : MonoBehaviour
         }
     }
 
+    public async void DrumHit(int drumVelocity)
+    {
+        if (websocket != null && websocket.State == WebSocketState.Open)
+        {
+
+            await websocket.SendText("DRUM_HIT:" + drumVelocity); //TODO: add remap/ dynamic
+            Debug.Log("Sent: DRUM_HIT:255");
+        }
+        else
+        {
+            Debug.LogWarning("WebSocket not connected");
+        }
+    }
+
 }
