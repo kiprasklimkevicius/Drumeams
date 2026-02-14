@@ -10,6 +10,10 @@ public class SoundCube : MonoBehaviour
     public float curr_y_velocity = 0;
     public float prev_y_velocity = 0;
 
+    bool firstBounce = false;
+
+    float bounceHeight = 0;
+
     private Rigidbody rb = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +30,12 @@ public class SoundCube : MonoBehaviour
     {
         prev_y_velocity = curr_y_velocity;
         curr_y_velocity = rb.linearVelocity.y;
+        // if (transform.position.y < -1 && rb.linearVelocity.y < 0) Bounce();
+        // if (rb.linearVelocity.magnitude > 10)
+        // {
+        //     // scale linear velocity to be 10
+        //     rb.linearVelocity = rb.linearVelocity.normalized * 3;
+        // }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -33,6 +43,7 @@ public class SoundCube : MonoBehaviour
 
         if (collision.gameObject.CompareTag("floor"))
         {
+            if (!firstBounce) bounceHeight = prev_y_velocity;
             // Reverse Y velocity vector aka bounce
             Bounce();
             Vector3 contactPoint = collision.contacts[0].point;
@@ -45,6 +56,7 @@ public class SoundCube : MonoBehaviour
 
     private void Bounce()
     {
-        rb.AddForce(Vector3.up * Mathf.Abs(prev_y_velocity), ForceMode.Impulse);
+        if(transform.position.y < 0 || rb.linearVelocity.y > 0) return;
+        rb.AddForce(Vector3.up * Mathf.Abs(bounceHeight), ForceMode.Impulse);
     }
 }

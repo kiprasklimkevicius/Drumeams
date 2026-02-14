@@ -3508,9 +3508,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PhysicsHand
   fastest_hand: 1
   trackedTransform: {fileID: 360188416}
-  rb: {fileID: 360188419}
+  body: {fileID: 0}
   webSockets: {fileID: 0}
   positionStrength: 15
+  positionThreshold: 0.005
+  maxDistance: 1
+  rotationStrength: 30
+  rotationThreshold: 10
 --- !u!136 &360188421
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9432,6 +9436,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 528727006}
     m_Modifications:
+    - target: {fileID: 5374554057470674151, guid: 9b09d6ad7c3b744f98be1bca77545d45, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374554057470674151, guid: 9b09d6ad7c3b744f98be1bca77545d45, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374554057470674151, guid: 9b09d6ad7c3b744f98be1bca77545d45, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7850132886136706422, guid: 9b09d6ad7c3b744f98be1bca77545d45, type: 3}
       propertyPath: m_Name
       value: SoundCube
@@ -9474,6 +9490,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8713908035622996150, guid: 9b09d6ad7c3b744f98be1bca77545d45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713908035622996150, guid: 9b09d6ad7c3b744f98be1bca77545d45, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -14077,9 +14097,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PhysicsHand
   fastest_hand: 1
   trackedTransform: {fileID: 1469690244}
-  rb: {fileID: 1469690247}
+  body: {fileID: 0}
   webSockets: {fileID: 0}
   positionStrength: 15
+  positionThreshold: 0.005
+  maxDistance: 1
+  rotationStrength: 30
+  rotationThreshold: 10
 --- !u!136 &1469690249
 CapsuleCollider:
   m_ObjectHideFlags: 0
