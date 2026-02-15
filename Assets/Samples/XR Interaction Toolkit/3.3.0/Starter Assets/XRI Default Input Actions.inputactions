@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "XRI Default Input Actions",
     "maps": [
         {
@@ -3395,6 +3396,34 @@
                     "action": "Spawn Object",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "ControllerButtonControls",
+            "id": "9c11064f-f022-45ac-8b09-74c45d018674",
+            "actions": [
+                {
+                    "name": "OpenMenuButton",
+                    "type": "Button",
+                    "id": "52ca5054-d518-4abc-a647-cb590a23245b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2a6c68db-6687-4d0c-b518-d77dfdec0ec8",
+                    "path": "<OculusTouchController>/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenMenuButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
