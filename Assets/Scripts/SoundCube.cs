@@ -7,6 +7,8 @@ public class SoundCube : MonoBehaviour
 
     public WebSocketManager webSockets = null;
 
+    public int velocityAmp = 3;
+
     public float curr_y_velocity = 0;
     public float prev_y_velocity = 0;
 
@@ -43,7 +45,7 @@ public class SoundCube : MonoBehaviour
 
         if (collision.gameObject.CompareTag("floor"))
         {
-            if (!firstBounce) bounceHeight = prev_y_velocity;
+            if (!firstBounce) bounceHeight = prev_y_velocity * velocityAmp;
             // Reverse Y velocity vector aka bounce
             Bounce();
             Vector3 contactPoint = collision.contacts[0].point;
